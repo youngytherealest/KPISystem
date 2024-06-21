@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {% include 'header.html' ignore missing %}
+  <title>Giao việc SVTT | HTQL SVTT</title>
+</head>
+<body class="hold-transition sidebar-mini">
+<div class="wrapper">
+  {% include 'navbar.html' ignore missing %}
+  
+  {% include 'sidebar.html' ignore missing %}
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>Giao việc</h1>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active">Giao việc</li>
+            </ol>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="col-lg-12 connectedSortable">
+      <!-- Map card -->
+      <div class="card">
+        <div class="card-header border-0 row">
+          <h3 class="card-title col-lg-2">
+            <i class="fa-solid fa-list-ol"></i>
+            Giao việc  
+          </h3>
+          <button class="btn btn-success btn-xs col-lg-3" id="themconviecviec_btn"><i class="fa-solid fa-plus"></i> Thêm danh sách công việc</button>
+        </div>
+        <div class="card-body row">
+          <div class="col-lg-6"></div>
+          <select id="dsnhomdacoviec" class="form-control col-lg-6"></select>
+          <!-- /.tab-pane -->
+          <div class="tab-pane mt-4" id="timeline">
+            <!-- The timeline -->
+            <div class="timeline timeline-inverse" id="dscongviec">
+              
+            </div>
+          </div>
+          <!-- /.tab-pane -->
+        </div>
+      </div>
+      <!-- /.card -->
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+  {% include 'footer.html' ignore missing %}
+  {% include 'modal.html' ignore missing %}
+
+  <!-- Control Sidebar -->
+  <aside class="control-sidebar control-sidebar-dark">
+    <!-- Control sidebar content goes here -->
+  </aside>
+  <!-- /.control-sidebar -->
+</div>
+<!-- jQuery -->
+<script src="plugins/jquery/jquery.min.js"></script>
+<!-- jQuery UI 1.11.4 -->
+<script src="plugins/jquery-ui/jquery-ui.min.js"></script>
+<!-- InputMask -->
+<script src="plugins/moment/moment.min.js"></script>
+<script src="plugins/inputmask/jquery.inputmask.min.js"></script>
+<script src="plugins/daterangepicker/daterangepicker.js"></script>
+<!-- Bootstrap 4 -->
+<script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- AdminLTE App -->
+<script src="../../dist/js/adminlte.min.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="../../dist/js/demo.js"></script>
+<!-- SweetAlert2 -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<!-- DataTables -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.21/js/jquery.dataTables.min.js" integrity="sha512-BkpSL20WETFylMrcirBahHfSnY++H2O1W+UnEEO4yNIl+jI2+zowyoGJpbtk6bx97fBXf++WJHSSK2MV4ghPcg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.21/js/dataTables.bootstrap4.min.js" integrity="sha512-OQlawZneA7zzfI6B1n1tjUuo3C5mtYuAWpQdg+iI9mkDoo7iFzTqnQHf+K5ThOWNJ9AbXL4+ZDwH7ykySPQc+A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.21/css/dataTables.bootstrap4.min.css" integrity="sha512-PT0RvABaDhDQugEbpNMwgYBCnGCiTZMh9yOzUsJHDgl/dMhD9yjHAwoumnUk3JydV3QTcIkNDuN40CJxik5+WQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<!-- SELECT2 -->
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="dist/js/demo.js"></script>
+<script src="dist/js/pages/assign.js"></script>
+</body>
+</html>

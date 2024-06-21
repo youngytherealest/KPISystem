@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {% include 'header.html' ignore missing %}
+  <title>Kỳ thực tập | HTQL SVTT</title>
+</head>
+<body class="hold-transition sidebar-mini">
+<!-- Site wrapper -->
+<div class="wrapper">
+  {% include 'navbar.html' ignore missing %}
+  
+  {% include 'sidebar.html' ignore missing %}
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>Kỳ thực tập</h1>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active">Kỳ thực tập</li>
+            </ol>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="col-lg-12 connectedSortable">
+      <!-- Map card -->
+      <div class="card">
+        <div class="card-header border-0 rows">
+          <h3 class="card-title col-lg-3">
+            <i class="fa-solid fa-list-ol"></i>
+            Danh sách kỳ thực tập  
+          </h3>
+          <button class="btn btn-success btn-s ms-auto" id="themkythuctap_btn" style="float: right;"><i class="fa-solid fa-plus"></i> Thêm kỳ thực tập</button>
+        </div>
+        <div class="card-body">
+          <table class="table table-bordered table-hover" id="bangdskythuctap">
+            <thead>
+              <tr>
+                <th scope="col" style="text-align: center;">STT</th>
+                <th scope="col" style="text-align: center; width: 25%;">Ngày bắt đầu</th>
+                <th scope="col" style="text-align: center;">Ngày kết thúc</th>
+                <th scope="col" style="text-align: center;">Trạng thái</th>
+                <th scope="col" style="text-align: center; width: 12%;">Thao tác</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+      <!-- /.card -->
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+  {% include 'modal.html' ignore missing %}
+  {% include 'footer.html' ignore missing %}
+  
+  <!-- Control Sidebar -->
+  <aside class="control-sidebar control-sidebar-dark">
+    <!-- Control sidebar content goes here -->
+  </aside>
+  <!-- /.control-sidebar -->
+</div>
+<!-- ./wrapper -->
+<!-- date-range-picker -->
+<!-- InputMask -->
+<script src="plugins/moment/moment.min.js"></script>
+<script src="plugins/inputmask/jquery.inputmask.min.js"></script>
+<script src="plugins/daterangepicker/daterangepicker.js"></script>
+<!-- Bootstrap 4 -->
+<script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- AdminLTE App -->
+<script src="../../dist/js/adminlte.min.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="../../dist/js/demo.js"></script>
+<!-- SweetAlert2 -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<!-- DataTables -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.21/js/jquery.dataTables.min.js" integrity="sha512-BkpSL20WETFylMrcirBahHfSnY++H2O1W+UnEEO4yNIl+jI2+zowyoGJpbtk6bx97fBXf++WJHSSK2MV4ghPcg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.21/js/dataTables.bootstrap4.min.js" integrity="sha512-OQlawZneA7zzfI6B1n1tjUuo3C5mtYuAWpQdg+iI9mkDoo7iFzTqnQHf+K5ThOWNJ9AbXL4+ZDwH7ykySPQc+A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.21/css/dataTables.bootstrap4.min.css" integrity="sha512-PT0RvABaDhDQugEbpNMwgYBCnGCiTZMh9yOzUsJHDgl/dMhD9yjHAwoumnUk3JydV3QTcIkNDuN40CJxik5+WQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<script src="dist/js/pages/internships.js"></script>
+</body>
+</html>

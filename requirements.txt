@@ -1,0 +1,10 @@
+fastapi
+jinja2
+python-multipart
+uvicorn
+pyjwt
+pyodbc
+docx-mailmerge
+pandas
+openpyxl
+python-dotenv

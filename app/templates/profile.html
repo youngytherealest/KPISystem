@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {% include 'header.html' ignore missing %}
+  <title>Profile | HTQL SVTT</title>
+</head>
+<body class="hold-transition sidebar-mini">
+<div class="wrapper">
+  {% include 'navbar.html' ignore missing %}
+  
+  {% include 'sidebar.html' ignore missing %}
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>Profile</h1>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active">User Profile</li>
+            </ol>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-3">
+
+            <!-- Profile Image -->
+            <div class="card card-primary card-outline">
+              <div class="card-body box-profile">
+                <div class="text-center">
+                  <img class="profile-user-img img-fluid img-circle"
+                        src="{{profile.avatar}}"
+                       alt="User profile picture">
+                </div>
+
+                <h3 class="profile-username text-center" id="profile_hoten">{{profile.hoten}}</h3>
+
+                <p class="text-muted text-center" id="profile_chucdanh">{{profile.chucdanh}}</p>
+
+                <ul class="list-group list-group-unbordered mb-3">
+                  <li class="list-group-item">
+                    <b><i class="fa-solid fa-mobile"></i></b> <a class="float-right" id="profile_sdt">{{profile.sdt}}</a>
+                  </li>
+                  <li class="list-group-item">
+                    <b><i class="fa-solid fa-envelope"></i></b> <a class="float-right" id="profile_email">{{profile.email}}</a>
+                  </li>
+                  <li class="list-group-item">
+                    <b><i class="fa-solid fa-z"></i></b> <a class="float-right" id="profile_zalo">{{profile.zalo}}</a>
+                  </li>
+                  <li class="list-group-item">
+                    <b><i class="fa-brands fa-facebook"></i></b> <a class="float-right" id="profile_facebook">{{profile.facebook}}</a>
+                  </li>
+                  <li class="list-group-item">
+                    <b><i class="fa-brands fa-github"></i></b> <a class="float-right" id="profile_github">{{profile.github}}</a>
+                  </li>
+                </ul>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
+          <div class="col-md-9">
+            <div class="card">
+              <div class="card-body">
+                  <!-- /.tab-pane -->
+                  <div class="tab-pane" id="timeline">
+                    <!-- The timeline -->
+                    <div class="timeline timeline-inverse" id="dsdetai">
+                      
+                    </div>
+                  </div>
+                  <!-- /.tab-pane -->
+                <!-- /.tab-content -->
+              </div><!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+  {% include 'footer.html' ignore missing %}
+
+  <!-- Control Sidebar -->
+  <aside class="control-sidebar control-sidebar-dark">
+    <!-- Control sidebar content goes here -->
+  </aside>
+  <!-- /.control-sidebar -->
+</div>
+<!-- jQuery -->
+<script src="plugins/jquery/jquery.min.js"></script>
+<!-- jQuery UI 1.11.4 -->
+<script src="plugins/jquery-ui/jquery-ui.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- overlayScrollbars -->
+<script src="plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+<!-- AdminLTE App -->
+<script src="dist/js/adminlte.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="dist/js/demo.js"></script>
+<script src="dist/js/pages/profile.js"></script>
+</body>
+</html>

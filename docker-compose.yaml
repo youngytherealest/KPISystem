@@ -1,0 +1,8 @@
+version: "3.9"
+
+services:
+  svtt-sql:
+    build: .
+    command: uvicorn app.app:app --host 0.0.0.0 --port 10000 --workers 4
+    ports:
+      - 10000:10000

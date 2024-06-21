@@ -1,0 +1,112 @@
+[
+    {
+        "Ten": "Website quản lý đặt đồ ăn",
+        "MoTa": "Website quản lý đặt đồ ăn",
+        "isDeleted": 0
+    },
+    {
+        "Ten": "Website quản lý SVTT",
+        "MoTa": "Sử dụng FastAPI + Jinja2 + MongoDB [Python, NoSQL]\n- Form điền thông tin sinh viên\n- Form khảo sát, đánh giá ẩn danh của SV\n- Form chọn đề tài của SV\n- Dashboard:\n  + Thống kê, tìm kiếm sinh viên\n  + Xem danh sách đánh giá sinh viên\n  + Xem đánh giá của sinh viên về CTY",
+        "isDeleted": 0
+    },
+    {
+        "Ten": "Website quản lý học phí sinh viên",
+        "MoTa": "Sử dụng ASP.NET / ASP.NET Core Web API \n+ MySQL/PHPAdmin \n- Đăng nhập \n- Form đăng ký học phần của sinh viên \n- Form xem Website quản lý học phí sinh viênhọc phí trong kỳ của sinh viên \n- Form thanh toán học phí (online và offline) \n- Form thời khóa biểu sinh viên \n- Danh mục dùng chung \n- Quản lý thông tin sinh viên, kỳ, học phần,... \n- Thống kê học phí theo học kỳ,... \n- Dashboard: \n  + Thông báo của lịch học \n  + Biểu đồ lượng đăng ký theo ngày, giờ, học kỳ,....",
+        "isDeleted": 0
+    },
+    {
+        "Ten": "Website thương mại điện tử xác thực nguồn gốc: Frontend AngularJS",
+        "MoTa": "Website thương mại điện tử xác thực nguồn gốc: Frontend AngularJS",
+        "isDeleted": 0
+    },
+    {
+        "Ten": "Tool phát hành hỗ trợ phát hành HDDT",
+        "MoTa": "Sử dụng ElectronJS, ReactJS, TypeScript\n- Đọc dữ liệu từ file excel & đẩy lên service HDDT\n- Cấu hình column qua file JSON\n- Lưu log XML & log phát hành",
+        "isDeleted": 0
+    },
+    {
+        "Ten": "Thiết kế giao diện app khiếu nại tố cáo",
+        "MoTa": "Sử dụng Flutter: \n-Đăng nhập \n-Dashboard \n-Tra cứu đơn thư \n-Danh sách đơn thư \n-Thông báo",
+        "isDeleted": 0
+    },
+    {
+        "Ten": "App mobile bán thức ăn",
+        "MoTa": "App mobile bán thức ăn",
+        "isDeleted": 0
+    },
+    {
+        "Ten": "Đọc tem tải trọng xe ô tô tải qua camera",
+        "MoTa": "Đọc tem tải trọng xe ô tô tải qua camera",
+        "isDeleted": 0
+    },
+    {
+        "Ten": "Quản lý đi công tác",
+        "MoTa": "Quản lý đi công tác",
+        "isDeleted": 0
+    },
+    {
+        "Ten": "Website thương mại điện tử xác thực nguồn gốc: Backend JAVA",
+        "MoTa": "Website thương mại điện tử xác thực nguồn gốc: Backend JAVA (PHÚC, AN)",
+        "isDeleted": 0
+    },
+    {
+        "Ten": "Website bán thiết bị điện tử phụ kiện ( laptop, tai  nghe, loa, đồng hồ, ốp lưng,...)",
+        "MoTa": "Sử dụng ngôn ngữ:  HTML,CSS,JAVASCRIPT,PHP,MY SQL",
+        "isDeleted": 0
+    },
+    {
+        "Ten": "Phát triển, kiểm thử nhóm chức năng quản lý Lịch công tác",
+        "MoTa": "Phát triển, kiểm thử nhóm chức năng quản lý Lịch công tác",
+        "isDeleted": 0
+    },
+    {
+        "Ten": "Website Thương mại điên tử bán sản phẩm điện tử",
+        "MoTa": "Website Thương mại điên tử bán sản phẩm điện tử",
+        "isDeleted": 0
+    },
+    {
+        "Ten": "Website Thương mại điện tử bán thực phẩm bổ sung",
+        "MoTa": "Website Thương mại điện tử bán thực phẩm bổ sung",
+        "isDeleted": 0
+    },
+    {
+        "Ten": " App mobile phát hành biên lai",
+        "MoTa": " App mobile phát hành biên lai",
+        "isDeleted": 0
+    },
+    {
+        "Ten": "Speech to text",
+        "MoTa": "Speech to text",
+        "isDeleted": 0
+    },
+    {
+        "Ten": "Thiết kế phần mềm quản lý sơ đồ phòng họp, hội trường",
+        "MoTa": "Sử dung .NET Windows Form hoặc WPF (Ưu tiên)\n- Thiết kế sơ đồ phòng họp tự động (tạo sơ đồ; lưu cấu trúc sơ đồ; thiết\nlập tên, số thứ tự cho từng ghế trong sơ đồ; đổi vị trí ghế; copy sơ đồ)\n- Thiết kế sơ đồ hội trường (tương tự như phòng họp) \n- Trình chiếu sang màn hình thứ 2",
+        "isDeleted": 0
+    },
+    {
+        "Ten": "Hệ thống IoT giám sát nhà kính thông minh kết nối webhost và thông báo qua Telegram",
+        "MoTa": "Hệ thống IoT giám sát nhà kính thông minh kết nối webhost và thông báo qua Telegram",
+        "isDeleted": 0
+    },
+    {
+        "Ten": "Hệ thống đo, ghi nhận và cảnh báo nhiệt độ, độ ẩm qua Telegram",
+        "MoTa": "Hệ thống đo, ghi nhận và cảnh báo nhiệt độ, độ ẩm qua Telegram",
+        "isDeleted": 0
+    },
+    {
+        "Ten": "Quản lý hợp đồng",
+        "MoTa": "Quản lý hợp đồng\n",
+        "isDeleted": 0
+    },
+    {
+        "Ten": "Công cụ hỗ trợ số hóa hồ sơ và tìm kiếm: OCR, Elasticsearch",
+        "MoTa": "Công cụ hỗ trợ số hóa hồ sơ và tìm kiếm: OCR, Elasticsearch",
+        "isDeleted": 0
+    },
+    {
+        "Ten": "Website thương mại điện tử xác thực nguồn gốc: QC Test, CSDL PostgreSQL",
+        "MoTa": "Website thương mại điện tử xác thực nguồn gốc: QC Test, CSDL PostgreSQL (THẾ ANH)",
+        "isDeleted": 0
+    }
+]

@@ -1,0 +1,127 @@
+<!-- Main Sidebar Container -->
+<aside class="main-sidebar sidebar-dark-primary elevation-4">
+  <!-- Brand Logo -->
+  <a href="/" class="brand-link">
+    <img src="{{ url_for('dist', path='/img/logo.png') }}" alt="VNPT Logo" class="brand-image">
+    <span class="brand-text font-weight-light">HTQL SVTT</span>
+  </a>
+
+  <!-- Sidebar -->
+  <div class="sidebar" id="sidebar">
+    <!-- Sidebar user panel (optional) -->
+    <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+      <div class="image">
+        <img id="dashboard_avatar_url" class="img-circle elevation-2" alt="User Avatar">
+      </div>
+      <div class="info">
+        <a class="d-block" id="dashboard_user_fullname"></a>
+      </div>
+    </div>
+
+    <!-- Sidebar Menu -->
+    <nav class="mt-2">
+      <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+        <!-- Add icons to the links using the .nav-icon class
+               with font-awesome or any other icon font library -->
+        <li class="nav-item">
+          <a href="/" class="nav-link" id="dashboard_home">
+            <i class="fa-solid fa-chart-line"></i>
+            <p>
+              Dashboard
+            </p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link" id="sinhvien">
+            <i class="fa-solid fa-user-graduate"></i>
+            <p>
+              Sinh viên
+              <i class="right fas fa-angle-left"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <!-- <li class="nav-item">
+              <a href="/danhsachsinhvien" class="nav-link" id="sinhvien_danhsachsinhvien">
+                <i class="fa-solid fa-users"></i>
+                <p>Danh sách sinh viên</p>
+              </a>
+            </li> -->
+            <li class="nav-item">
+              <a href="/danhgiasinhvien" class="nav-link" id="sinhvien_danhgiasinhvien">
+                <i class="fa-solid fa-person-circle-check"></i>
+                <p>Đánh giá sinh viên</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="/giaoviec" class="nav-link" id="sinhvien_giaoviec">
+                <i class="fa-solid fa-business-time"></i>
+                <p>Giao việc sinh viên</p>
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link" id="thuctap">
+            <i class="fa-solid fa-list"></i>
+            <p>
+              Thực tập
+              <i class="right fas fa-angle-left"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="/danhsachdetai" class="nav-link" id="thuctap_danhsachdetai">
+                <i class="fa-solid fa-diagram-project"></i>
+                <p>Danh sách đề tài</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="/danhsachkythuctap" class="nav-link" id="thuctap_danhsachkythuctap">
+                <i class="fa-solid fa-calendar-days"></i>
+                <p>Danh sách kỳ thực tập</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="/danhsachnhomthuctap" class="nav-link" id="thuctap_danhsachnhomthuctap">
+                <i class="fa-solid fa-layer-group"></i>
+                <p>Danh sách nhóm thực tập</p>
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link" id="sinhvien">
+            <i class="fa-solid fa-layer-group"></i>
+            <p>
+              Danh mục
+              <i class="right fas fa-angle-left"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="/dmtruong" class="nav-link" id="danhmuc_danhmuctruong">
+                <i class="fa-solid fa-school-flag"></i>
+                <p>Trường</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="/dmnganh" class="nav-link" id="danhmuc_danhmucnganh">
+                <i class="fa-solid fa-shapes"></i>
+                <p>Ngành</p>
+              </a>
+            </li>
+            <!-- <li class="nav-item">
+              <a href="/giaoviec" class="nav-link" id="sinhvien_giaoviec">
+                <i class="fa-solid fa-business-time"></i>
+                <p>Giao việc sinh viên</p>
+              </a>
+            </li> -->
+          </ul>
+        </li>
+      </ul>
+    </nav>
+    <!-- /.sidebar-menu -->
+  </div>
+  <!-- /.sidebar -->
+</aside>
+<script src="{{ url_for('dist', path='/js/pages/sidebar.js') }}"></script>

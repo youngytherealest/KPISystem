@@ -12,4 +12,4 @@
 
 
 
-### LƯU Ý: VUI LÒNG KHÔNG SHARE DỮ LIỆU RA BÊN NGOÀI DƯỚI MỌI HÌNH THỨC!!!!v
+### LƯU Ý: VUI LÒNG KHÔNG SHARE DỮ LIỆU RA BÊN NGOÀI DƯỚI MỌI HÌNH THỨC!!!!

@@ -3,51 +3,45 @@ from ..utils.export_report import *
 
 import datetime
 
-def insert_users_controller(idus: int, idpb: int, idtk: int,hoten: str, ngaysinh: datetime, diachi: str, sodienthoai: constr(regex=r'^\d{10,15}$'), email: str, gioitinh: bool, chucvu: str, taikhoan: str, matkhau: str) -> bool:
-    result = insert_users(idus, idpb, idtk, hoten, ngaysinh, diachi, sodienthoai, email, gioitinh, chucvu, taikhoan, matkhau)
+def insert_sinh_vien_controller(MSSV, HoTen: str, GioiTinh: int, SDT: str, Email: str, DiaChi: str, MaLop: str, Truong: str, Nganh: str, Khoa: int) -> bool:
+    result = insert_sinh_vien(MSSV, HoTen, GioiTinh, SDT, Email, DiaChi, MaLop, Truong, Nganh, Khoa)
     return result
 
-def get_all_users_controller():
-    return get_all_users()
+def get_all_sinh_vien_controller():
+    return get_all_sinh_vien()
 
-def get_all_list_users_controller():
-    return get_all_list_users()
+def get_all_list_sinh_vien_controller():
+    return get_all_list_sinh_vien()
 
-def get_ds_users_by_id_controller(danhmuctaikhoan: str, chamcong: str, phongban: str, danhmucphanquyen: str):
-    return get_ds_users_by_id(danhmuctaikhoan, chamcong, phongban, danhmucphanquyen)
+def get_ds_sinh_vien_by_id_controller(kythuctap: str, detai: str, nguoihuongdan: str):
+    return get_ds_sinh_vien_by_id(kythuctap, detai, nguoihuongdan)
 
-def count_all_users_controller():
-    return count_all_users()
+def count_all_sinh_vien_controller():
+    return count_all_sinh_vien()
 
-def get_so_luong_users_theo_vai_tro_controller():
-    return get_so_luong_users_theo_vai_tro()
+def get_so_luong_sinh_vien_theo_truong_controller():
+    return get_so_luong_sinh_vien_theo_truong()
 
-def get_so_luong_users_theo_phong_ban_controller():
-    return get_so_luong_users_theo_phong_ban()
-
-def get_so_luong_users_theo_bo_phan_controller():
-    return get_so_luong_users_theo_bo_phan()
+def get_so_luong_sinh_vien_theo_nganh_controller():
+    return get_so_luong_sinh_vien_theo_nganh()
 
 def get_user_info_by_username_controller(username: str):
     return get_user_info_by_username(username)
 
-def ti_le_users_da_danh_gia_controller():
-    return ti_le_users_da_danh_gia()
+def ti_le_sinh_vien_da_danh_gia_controller():
+    return ti_le_sinh_vien_da_danh_gia()
 
-def so_luong_users_dat_ket_qua_controller():
-    return so_luong_users_dat_ket_qua()
+def so_luong_sinh_vien_dat_ket_qua_controller():
+    return so_luong_sinh_vien_dat_ket_qua()
 
-def get_all_cong_viec_controller():
-    return get_all_cong_viec()
+def get_all_de_tai_thuc_tap_controller():
+    return get_all_de_tai_thuc_tap()
 
-def get_all_bo_phan_controller():
-    return get_all_bo_phan()
+def get_all_truong_controller():
+    return get_all_truong()
 
-def get_all_phong_ban_controller():
-    return get_all_phong_ban()
-
-def get_all_vai_tro_controller():
-    return get_all_vai_tro()
+def get_all_nganh_controller():
+    return get_all_nganh()
 
 def get_all_nguoi_huong_dan_controller():
     return get_all_nguoi_huong_dan()

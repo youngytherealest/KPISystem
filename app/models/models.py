@@ -4,9 +4,9 @@ import datetime
 conn = create_connection()
 cursor = conn.cursor()
 
-def insert_sinh_vien(MSSV: str, HoTen: str, GioiTinh: int, SDT: str, Email: str, DiaChi: str, MaLop: str, Truong: str, Nganh: str, Khoa: int) -> bool:
+def insert_users(idus: int, idpb: int, idtk: int,hoten: str, ngaysinh: datetime, diachi: str, sodienthoai: constr(regex=r'^\d{10,15}$'), email: str, gioitinh: bool, chucvu: str) -> bool:
     try:
-        i = cursor.execute("EXEC InsertSinhVien ?, ?, ?, ?, ?, ?, ?, ?, ?, ?", MSSV, HoTen, GioiTinh, SDT, Email, DiaChi, MaLop, Truong, Nganh, Khoa).fetchone()
+        i = cursor.execute("EXEC InsertSinhVien ?, ?, ?, ?, ?, ?, ?, ?, ?, ?", idus, idpb, idtk, hoten, ngaysinh, diachi, sodienthoai, email, gioitinh, chucvu,).fetchone()
         result = i[0]
         conn.commit()
         return result
@@ -14,7 +14,144 @@ def insert_sinh_vien(MSSV: str, HoTen: str, GioiTinh: int, SDT: str, Email: str,
         print(e)
         return False
     
-def verify_user(username: str, password: str):
+def insert_vai_tro(idvt: int, tenvaitro: str) -> bool:
+    try:
+        i = cursor.execute("EXEC InsertVaiTro ?, ?,", idvt, tenvaitro).fetchone()
+        result = i[0]
+        conn.commit()
+        return result
+    except Exception as e:
+        print(e)
+        return False
+    
+'''def insert_phan_quyen(idus: int, idvt: int, trangthai: bool, ghichu: str) -> bool:
+    try:
+        i = cursor.execute("EXEC InsertPhanQuyen ?, ?, ?, ?", idus, idvt, trangthai, ghichu).fetchone()
+        result = i[0]
+        conn.commit()
+        return result
+    except Exception as e:
+        print(e)
+        return False'''
+    
+def insert_tai_khoan(idtk: int, taikhoan: str, matkhau: str, ngaytao: datetime, ngaycapnhat: datetime, trangthai: bool) -> bool:
+    try:
+        i = cursor.execute("EXEC Insertdmtaikhoan ?, ?, ?, ?, ?, ?", idtk, taikhoan, matkhau, ngaytao, ngaycapnhat, trangthai).fetchone()
+        result = i[0]
+        conn.commit()
+        return result
+    except Exception as e:
+        print(e)
+        return False
+    
+def get_all_dmphan_quyen():
+    try:
+        result = cursor.execute("EXEC GetphanquyenDashboard").fetchall()
+        return result
+    except Exception as e:
+        return e
+
+def get_all_tai_khoan():
+    try:
+        result = cursor.execute("EXEC GetdmtaikhoanDashboard").fetchall()
+        return result
+    except Exception as e:
+        return e
+    
+def get_all_vai_tro():
+    try:
+        result = cursor.execute("EXEC GetvaitrooDashboard").fetchall()
+        return result
+    except Exception as e:
+        return e
+    
+def get_all_dmtaikhoan_by_tai_khoan(taikhoan: str):
+    try:
+        result = cursor.execute("EXEC GetdmtaikhoanBytaikhoan ?", taikhoan).fetchall()
+        data = [{'idtk': i[0], 'taikhoan': i[1], 'matkhau': i[2], 'ngaytao': i[3], 'ngaycapnhat': i[4], 'trangthai': i[5]} for i in result]
+        return data
+    except Exception as e:
+        return e
+
+def update_phan_quyen_by_id(idus: int, idvt: int, trangthai: bool, ghichu: str):
+    try:
+        result = cursor.execute("EXEC UpdatePhanQuyenByID ?, ?, ?, ?", idus, idvt, trangthai, ghichu)
+        conn.commit()
+        return True
+    except Exception as e:
+        return e
+    
+def update_vai_tro_by_id(idvt: int, tenvaitro: str):
+    try:
+        result = cursor.execute("EXEC UpdateVaiTroByID ?, ?", idvt, tenvaitro)
+        conn.commit()
+        return True
+    except Exception as e:
+        return e
+
+def xoa_phan_quyen_by_idus(idus: int):
+    try:
+        result = cursor.execute("EXEC XoaUsersByIDus ?", idus)
+        r = result.fetchone()[0]
+        cursor.commit()
+        return r
+    except Exception as e:
+        return e
+    
+def xoa_tai_khoan_by_idtk(idtk: int):
+    try:
+        result = cursor.execute("EXEC XoaTaiKhoanByIDtk ?", idtk)
+        r = result.fetchone()[0]
+        cursor.commit()
+        return r
+    except Exception as e:
+        return e
+    
+def xoa_vai_tro_by_idvt(idvt: int):
+    try:
+        result = cursor.execute("EXEC XoavaitroByIDvt ?", idvt)
+        r = result.fetchone()[0]
+        cursor.commit()
+        return r
+    except Exception as e:
+        return e
+
+def create_account(request: CreateAccountRequest):
+    try:
+        result = cursor.execute("EXEC INSERTtk ?, ?", request.taikhoan, request.matkhau)
+        r = result.fetchone()[0]
+        cursor.commit()
+        return r
+    except Exception as e:
+        return e
+    
+def update_matkhau(request: UpdatePasswordRequest):
+    try:
+        result = cursor.execute("EXEC UpdateMatKhau ?, ?",  request.taikhoan, request.new_password)
+        conn.commit()
+        return True
+    except Exception as e:
+        return e
+
+def logout(request: LogoutRequest):
+    try: 
+        result = cursor.execute("EXEC SPLOGOUT ?", request.taikhoan)
+        r = result.fetchone()[0]
+        cursor.commit()
+        return r
+    except Exception as e:
+        return e
+    
+def login(request: LoginRequest):
+    try: 
+        result = cursor.execute("EXEC SPLOGIN ?, ?", request.taikhoan, request.matkhau)
+        r = result.fetchone()[0]
+        cursor.commit()
+        return r
+    except Exception as e:
+        return e
+"""
+def verify_users(username: str, password: str):
     try:
         cursor.execute("LoginUser ?, ?", username, password)
         result = cursor.fetchone()
@@ -25,59 +162,66 @@ def verify_user(username: str, password: str):
     except Exception as e:
         return e
 
-def get_all_sinh_vien():
+def get_all_users():
     try:
-        result = cursor.execute("EXEC GetDSSVDashboard").fetchall()
+        result = cursor.execute("EXEC GetDSNVDashboard").fetchall()
         return result
     except Exception as e:
         return e
 
-def get_all_list_sinh_vien():
+def get_all_list_users():
     try:
-        result = cursor.execute("EXEC GetDSSV").fetchall()
+        result = cursor.execute("EXEC GetDSNV").fetchall()
         return result
     except Exception as e:
         return e
     
-def count_all_sinh_vien():
+def count_all_users():
     try:
-        result = cursor.execute("SELECT COUNT(*) FROM SinhVien")
+        result = cursor.execute("SELECT COUNT(*) FROM users")
         return result.fetchone()[0]
     except Exception as e:
         return e
     
-def ti_le_sinh_vien_da_danh_gia():
+def ti_le_users_da_danh_gia():
     try:
-        sinhvientoihan = cursor.execute("EXEC GetDSSVSapToiHanBaoCao").fetchone()[0]
-        return sinhvientoihan
+        userstoihan = cursor.execute("EXEC GetDSNVSapToiHanBaoCao").fetchone()[0]
+        return userstoihan
     except Exception as e:
         return e
 
-def so_luong_sinh_vien_dat_ket_qua():
+def so_luong_users_dat_ket_qua():
     try:
-        result = cursor.execute("EXEC GetSoLuongSinhVienDatKetQua").fetchone()
+        result = cursor.execute("EXEC GetSoLuongNhanVienDatKetQua").fetchone()
         return {'dat': result[0], 'khong_dat': result[1]}
     except Exception as e:
         return e
 
-def get_so_luong_sinh_vien_theo_truong():
+def get_so_luong_users_theo_vai_tro():
     try:
-        result = cursor.execute("EXEC GetSoLuongSinhVienTheoTruong")
-        return [{'truong': i.Ten, 'soluong': i.SLSV} for i in result.fetchall()]
+        result = cursor.execute("EXEC GetSoLuongNhanVienTheoVaiTro")
+        return [{'vaitro': i.VAITRO, 'soluong': i.SL} for i in result.fetchall()]
     except Exception as e:
         return e
-
-def get_so_luong_sinh_vien_theo_nganh():
+    
+def get_so_luong_users_theo_phong_ban():
     try:
-        result = cursor.execute("EXEC GetSoLuongSinhVienTheoNganh")
-        return [{'nganh': i.NGANH, 'soluong': i.SL} for i in result.fetchall()]
+        result = cursor.execute("EXEC GetSoLuongNhanVienTheoPhongBan")
+        return [{'phongban': i.PHONGBAN, 'soluong': i.SL} for i in result.fetchall()]
     except Exception as e:
         return e
-
-def get_trang_thai_sinh_vien_by_id(id: str):
+    
+def get_so_luong_users_theo_bo_phan():
     try:
-        i = cursor.execute("EXEC GetTrangThaiSinhVienByID ?", id).fetchone()
-        return {'id': i[0], 'trangthai': i[6]}
+        result = cursor.execute("EXEC GetSoLuongNhanVienTheoBoPhan")
+        return [{'bophan': i.BOPHAN, 'soluong': i.SL} for i in result.fetchall()]
+    except Exception as e:
+        return e
+    
+def get_trang_thai_users_by_id(idus: str):
+    try:
+        i = cursor.execute("EXEC GetTrangThaiNhanVienByID ?", idus).fetchone()
+        return {'idus': i[0], 'trangthai': i[6]}
     except Exception as e:
         return e
 
@@ -85,13 +229,6 @@ def get_user_info_by_username(username: str):
     try:
         result = cursor.execute("EXEC GetUserInfo ?", username)
         return result.fetchone()
-    except Exception as e:
-        return e
-    
-def get_all_de_tai_thuc_tap():
-    try:
-        result = cursor.execute("SELECT * FROM DeTai WHERE isDeleted != 2")
-        return [{'id': i[0], 'ten': i[1], 'mota': i[2], 'xoa': i[3]} for i in result.fetchall()]
     except Exception as e:
         return e
     

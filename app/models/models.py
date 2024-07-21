@@ -15,7 +15,7 @@ def insert_user(idus: str, idpb: str,idtk:str, hoten: str, ngaysinh: datetime, d
     except Exception as e:
         print(e)
         return False
-def insert_vaitro(idvt: str, tenvt: str, trangthai: bool, ghichu: str, ) -> bool:
+def insert_vai_tro(idvt: str, tenvt: str, trangthai: bool, ghichu: str, ) -> bool:
     try:
         i = cursor.execute("EXEC InsertUser ?, ?, ?, ?", idvt, tenvt, trangthai, ghichu).fetchone()
         result = i[0]
@@ -24,7 +24,7 @@ def insert_vaitro(idvt: str, tenvt: str, trangthai: bool, ghichu: str, ) -> bool
     except Exception as e:
         print(e)
         return False
-def insert_phanquyen(idus: str, idvt: str, trangthai: bool, ghichu: str, ) -> bool:
+def insert_phan_quyen(idus: str, idvt: str, trangthai: bool, ghichu: str, ) -> bool:
     try:
         i = cursor.execute("EXEC InsertUser ?, ?, ?, ?",idus, idvt, trangthai, ghichu).fetchone()
         result = i[0]
@@ -42,7 +42,7 @@ def insert_taikhoan(idtk:str, taikhoan: str, matkhau: str, ngaytao: datetime, ng
     except Exception as e:
         print(e)
         return False  
-def verify_taikhoan(taikhoan: str, matkhau: str):
+def verify_tai_khoan(taikhoan: str, matkhau: str):
     try:
         cursor.execute("LoginTaiKhoan ?, ?", taikhoan, matkhau)
         result = cursor.fetchone()
@@ -52,39 +52,39 @@ def verify_taikhoan(taikhoan: str, matkhau: str):
         return True
     except Exception as e:
         return e
-def get_all_danhmuctaikhoan_by_taikhoan(taikhoan: str):
+def get_all_danh_muc_tai_khoan_by_tai_khoan(taikhoan: str):
     try:
         result = cursor.execute("EXEC GetDanhMucTaiKhoanByTaiKhoan ?", id).fetchall()
         data = [{'idtk': i[0], 'taikhoan': i[1], 'trangthai': i[2], 'ghichu': i[3],} for i in result]
         return data
     except Exception as e:
         return e
-def get_all_vaitro():
+def get_all_vai_tro():
     try:
         result = cursor.execute("EXEC GetDSVTDashboard").fetchall()
         return result
     except Exception as e:
         return e
-def get_all_phanquyen():
+def get_all_phan_quyen():
     try:
         result = cursor.execute("EXEC GetDSPQDashboard").fetchall()
         return result
     except Exception as e:
         return e
-def get_all_taikhoan():
+def get_all_tai_khoan():
     try:
         result = cursor.execute("EXEC GetDSTKDashboard").fetchall()
         return result
     except Exception as e:
         return e
-def capnhat_phanquyen(idus: str, idvt: str, trangthai: bool, ghichu:str):
+def capnhat_phan_quyen(idus: str, idvt: str, trangthai: bool, ghichu:str):
     try:
         result = cursor.execute("EXEC InsertKyThucTap ?, ?, ?", idus, idvt, trangthai,ghichu)
         conn.commit()
         return True
     except Exception as e:
         return e
-def capnhat_vaitro(idvt: str, tenvt: str, trangthai: bool, ghichu:str):
+def capnhat_vai_tro(idvt: str, tenvt: str, trangthai: bool, ghichu:str):
     try:
         result = cursor.execute("EXEC InsertKyThucTap ?, ?, ?", idvt, tenvt, trangthai,ghichu)
         conn.commit()
@@ -98,21 +98,21 @@ def capnhat_password(request: UpdatePasswordRequest):
         return True
     except Exception as e:
         return e
-def update_xoa_phanquyen_by_idus(idus: str):
+def update_xoa_phan_quyen_by_idus(idus: str):
     try:
         result = cursor.execute("EXEC UpdateXoaPhanQuyenByIDUS ?", id)
         conn.commit()
         return True
     except Exception as e:
         return e
-def update_xoa_taikhoan_by_idtk(idtk: str):
+def update_xoa_tai_khoan_by_idtk(idtk: str):
     try:
         result = cursor.execute("EXEC UpdateXoaTaiKhoanByIDTK ?", id)
         conn.commit()
         return True
     except Exception as e:
         return e
-def update_xoa_vaitro_by_idvt(idvt: str):
+def update_xoa_vai_tro_by_idvt(idvt: str):
     try:
         result = cursor.execute("EXEC UpdateXoaVaiTroByIDVT ?", id)
         conn.commit()

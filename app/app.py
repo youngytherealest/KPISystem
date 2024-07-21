@@ -55,25 +55,24 @@ class DanhGiaSVByID(BaseModel):
     khananggiaiquyetcongviec_text: str
     danhgiachung_number: float
 
-class ThongTinSV(BaseModel):
-    mssv: str
+class ThongTinUser(BaseModel):
+    idus: str
+    idbp: str
     hoten: str
-    gioitinh: int
+    ngaysinh:str
+    diachi: str
     sdt: str
     email: str
-    diachi: str
-    malop: str
-    truong: str
-    nganh: str
-    khoa: int
-
+    gioitinh: int
+    chucvu: str
+    trangthai: bool
 SECRET_KEY = "BN3298"
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 60*6
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 
 def verify_user_route(credentials: UserCredentials):
-    return verify_user_controller(username=credentials.username, password=sha3_256(bytes(credentials.password, 'utf-8')).hexdigest())
+    return verify_user_controller(username=credentials.username, password=Us_123(bytes(credentials.password, 'utf-8')).hexdigest())
 
 def get_current_user(token: str = Depends(oauth2_scheme)):
     credentials_exception = HTTPException(status_code=401, detail="Could not validate credentials")
@@ -125,9 +124,7 @@ async def home(request: Request, token: str = Cookie(None)):
             payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
             username = payload.get("sub")
             if username:
-                tong_sinh_vien: int = count_all_sinh_vien_controller()
-                ti_le_da_danh_gia: float = ti_le_sinh_vien_da_danh_gia_controller()
-                so_luong_ket_qua: int = so_luong_sinh_vien_dat_ket_qua_controller()
+                tong_sinh_vien: int = count_all_user_controller()
                 return templates.TemplateResponse('index.html', context={'request': request, 'dashboard_tongsinhvien': tong_sinh_vien, 'dashboard_tiledadanhgia': ti_le_da_danh_gia, 'dashboard_soluongdat': so_luong_ket_qua['dat'], 'dashboard_soluongkhongdat': so_luong_ket_qua['khong_dat']})
         except jwt.PyJWTError:
             pass
@@ -146,9 +143,52 @@ async def login(request: Request, token: str = Cookie(None)):
     else:
         return templates.TemplateResponse('login.html', context={'request': request})
 
-@app.get('/sinhvien')
-async def nhap_thong_tin_sinh_vien(request: Request):
+@app.get('/user')
+async def nhap_thong_tin_user(request: Request):
     return templates.TemplateResponse('student.html', context={'request': request})
+
+@app.get('/chonbophan')
+async def chon_nhom_thuc_tap(request: Request):
+    return templates.TemplateResponse('select_group.html', context={'request': request})
+@app.get('/danhgiauser')
+async def danhgiasinhvien(request: Request, token: str = Cookie(None)):
+    if token:
+        try:
+            payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
+            username = payload.get("sub")
+            if username:
+                return templates.TemplateResponse('user_review.html', context={'request': request})
+                
+        except jwt.PyJWTError:
+            pass
+    return RedirectResponse('/login')
+
+@app.get('/danhsachuser')
+async def danhsachuser(request: Request, token: str = Cookie(None)):
+    if token:
+        try:
+            payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
+            username = payload.get("sub")
+            if username:
+                return templates.TemplateResponse('list_student.html', context={'request': request})            
+        except jwt.PyJWTError:
+            pass
+    return RedirectResponse('/login')
+@app.get('/dmtaikhoan')
+async def danhsachkythuctap(request: Request, token: str = Cookie(None)):
+    if token:
+        try:
+            payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
+            username = payload.get("sub")
+            if username:
+                return templates.TemplateResponse('dmtaikhoan.html', context={'request': request})
+                
+        except jwt.PyJWTError:
+            pass
+    return RedirectResponse('/login')
+@app.get('/get_danh_muc_tai_khoan')
+async def get_danh_muc_tai_khoan(id: str):
+    return JSONResponse(status_code=200, content=get_danh_muc_tai_khoan_by_tai_khoan(id))
 
 @app.get('/chonnhomthuctap')
 async def chon_nhom_thuc_tap(request: Request):

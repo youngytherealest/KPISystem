@@ -125,7 +125,7 @@ async def home(request: Request, token: str = Cookie(None)):
             username = payload.get("sub")
             if username:
                 tong_sinh_vien: int = count_all_user_controller()
-                return templates.TemplateResponse('index.html', context={'request': request, 'dashboard_tongsinhvien': tong_sinh_vien, 'dashboard_tiledadanhgia': ti_le_da_danh_gia, 'dashboard_soluongdat': so_luong_ket_qua['dat'], 'dashboard_soluongkhongdat': so_luong_ket_qua['khong_dat']})
+                return templates.TemplateResponse('index.html', context={'request': request, 'dashboard_tonguser': tong_user, 'dashboard_tiledadanhgia': ti_le_da_danh_gia, 'dashboard_soluongdat': so_luong_ket_qua['dat'], 'dashboard_soluongkhongdat': so_luong_ket_qua['khong_dat']})
         except jwt.PyJWTError:
             pass
     return RedirectResponse('/login')
@@ -151,7 +151,7 @@ async def nhap_thong_tin_user(request: Request):
 async def chon_nhom_thuc_tap(request: Request):
     return templates.TemplateResponse('select_group.html', context={'request': request})
 @app.get('/danhgiauser')
-async def danhgiasinhvien(request: Request, token: str = Cookie(None)):
+async def danhgiauser(request: Request, token: str = Cookie(None)):
     if token:
         try:
             payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
@@ -175,7 +175,7 @@ async def danhsachuser(request: Request, token: str = Cookie(None)):
             pass
     return RedirectResponse('/login')
 @app.get('/dmtaikhoan')
-async def danhsachkythuctap(request: Request, token: str = Cookie(None)):
+async def dmtaikhoan(request: Request, token: str = Cookie(None)):
     if token:
         try:
             payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
@@ -190,7 +190,7 @@ async def danhsachkythuctap(request: Request, token: str = Cookie(None)):
 async def get_danh_muc_tai_khoan(id: str):
     return JSONResponse(status_code=200, content=get_danh_muc_tai_khoan_by_tai_khoan(id))
 
-@app.get('/chonnhomthuctap')
+"""@app.get('/chonnhomthuctap')
 async def chon_nhom_thuc_tap(request: Request):
     return templates.TemplateResponse('select_group.html', context={'request': request})
 
@@ -199,8 +199,8 @@ async def hosonguoihuongdan(request: Request, id: str):
     result = get_user_info_by_username(id)
     profile = {'hoten': result[0], 'sdt': result[1], 'email': result[2], 'chucdanh': result[3], 'phong': result[4], 'zalo': result[5], 'facebook': result[6], 'github': result[7], 'avatar': result[8]}
     return templates.TemplateResponse('profile.html', context={'request': request, 'profile': profile})
-
-@app.get('/danhgiasinhvien')
+"""
+"""@app.get('/danhgiasinhvien')
 async def danhgiasinhvien(request: Request, token: str = Cookie(None)):
     if token:
         try:
@@ -224,7 +224,7 @@ async def danhsachsinhvien(request: Request, token: str = Cookie(None)):
                 
         except jwt.PyJWTError:
             pass
-    return RedirectResponse('/login')
+    return RedirectResponse('/login')"""
 
 
 @app.get('/giaoviec')
@@ -265,74 +265,85 @@ async def danhsachkythuctap(request: Request, token: str = Cookie(None)):
             pass
     return RedirectResponse('/login')
 
-@app.get('/dmtruong')
-async def danhsachkythuctap(request: Request, token: str = Cookie(None)):
+
+
+@app.get('/dmphongban')
+async def dmtaikhoan(request: Request, token: str = Cookie(None)):
     if token:
         try:
             payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
             username = payload.get("sub")
             if username:
-                return templates.TemplateResponse('dmtruong.html', context={'request': request})
-                
+                return templates.TemplateResponse('dmtaikhoan.html', context={'request': request})   
         except jwt.PyJWTError:
             pass
     return RedirectResponse('/login')
 
-@app.get('/dmnganh')
-async def danhsachkythuctap(request: Request, token: str = Cookie(None)):
+@app.get('/dmbophan')
+async def dmtaikhoan(request: Request, token: str = Cookie(None)):
     if token:
         try:
             payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
             username = payload.get("sub")
             if username:
-                return templates.TemplateResponse('dmnganh.html', context={'request': request})
-                
+                return templates.TemplateResponse('dmtaikhoan.html', context={'request': request})     
         except jwt.PyJWTError:
             pass
     return RedirectResponse('/login')
 
-@app.get('/danhsachnhomthuctap')
-async def danhsachnhomthuctap(request: Request, token: str = Cookie(None)):
+@app.get('/dmvaitro')
+async def dmtaikhoan(request: Request, token: str = Cookie(None)):
     if token:
         try:
             payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
             username = payload.get("sub")
             if username:
-                return templates.TemplateResponse('groups.html', context={'request': request})
-                
+                return templates.TemplateResponse('dmtaikhoan.html', context={'request': request})           
         except jwt.PyJWTError:
             pass
     return RedirectResponse('/login')
 
-@app.get('/get_ds_de_tai_profile')
+"""@app.get('/get_ds_de_tai_profile')
 async def get_ds_de_tai_profile(id: str):
-    return JSONResponse(status_code=200, content=get_nhom_thuc_tap_by_user_id_controller(id))
+    return JSONResponse(status_code=200, content=get_nhom_thuc_tap_by_user_id_controller(id))"""
 
-@app.get('/get_so_luong_sinh_vien_theo_truong')
-async def get_so_luong_sinh_vien_theo_truong_route(token: str = Cookie(None)):
+@app.get('/get_so_luong_user_theo_phongban')
+async def get_so_luong_user_theo_phongban_route(token: str = Cookie(None)):
     if token:
         try:
             payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
             username = payload.get("sub")
             if username:
-                return get_so_luong_sinh_vien_theo_truong_controller()
+                return get_so_luong_user_theo_phongban_controller()
         except jwt.PyJWTError:
             pass
     return RedirectResponse('/login')
 
-@app.get('/get_so_luong_sinh_vien_theo_nganh')
-async def get_so_luong_sinh_vien_theo_nganh_route(token: str = Cookie(None)):
+@app.get('/get_so_luong_user_theo_bophan')
+async def get_so_luong_user_theo_bophan_route(token: str = Cookie(None)):
     if token:
         try:
             payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
             username = payload.get("sub")
             if username:
-                return get_so_luong_sinh_vien_theo_nganh_controller()
+                return get_so_luong_user_theo_bophan_controller()
         except jwt.PyJWTError:
             pass
     return RedirectResponse('/login')
 
-@app.get('/get_all_sinh_vien')
+@app.get('/get_so_luong_user_theo_vaitro')
+async def get_so_luong_user_theo_vaitro_route(token: str = Cookie(None)):
+    if token:
+        try:
+            payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
+            username = payload.get("sub")
+            if username:
+                return get_so_luong_user_theo_vaitro_controller()
+        except jwt.PyJWTError:
+            pass
+    return RedirectResponse('/login')
+
+@app.get('/get_all_user')
 async def get_all_sinh_vien_route(token: str = Cookie(None)):
     if token:
         try:
@@ -346,35 +357,35 @@ async def get_all_sinh_vien_route(token: str = Cookie(None)):
             pass
     return RedirectResponse('/login')
 
-@app.get('/get_all_list_sinh_vien')
-async def get_all_list_sinh_vien_route(token: str = Cookie(None)):
+@app.get('/get_all_list_user')
+async def get_all_list_user_route(token: str = Cookie(None)):
     if token:
         try:
             payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
             username = payload.get("sub")
             if username:
-                result = get_all_list_sinh_vien_controller()
-                ds: list = [{'id': i[0], 'mssv': i[1], 'hoten': i[2], 'gioitinh': 'Nam' if i[3]==1 else 'Nữ', 'nganh': i[4], 'truong': i[5], 'khoa': i[6], 'trangthai': i[7], 'luuy': i[8], 'id_nhd': i[9], 'id_ktt': i[10], 'id_dtai': i[11]} for i in result]
+                result = get_all_list_user_controller()
+                ds: list = [{'idus': i[0], 'idpb': i[1], 'hoten': i[2],'ngaysinh':i[3],'diachi':i[4],'sodienthoai':i[5],'email':i[6], 'gioitinh': 'Nam' if i[7]==1 else 'Nữ','chucvu': i[8], 'trangthai': i[9]} for i in result]
                 return JSONResponse(status_code=200, content=ds)
         except jwt.PyJWTError:
             pass
     return RedirectResponse('/login')
 
-@app.get('/get_ds_sinh_vien_by_id')
+@app.get('/get_ds_user_by_id')
 async def get_ds_sinh_vien_by_id_route(kythuctap: str, detai: str, nguoihuongdan: str,token: str = Cookie(None)):
     if token:
         try:
             payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
             username = payload.get("sub")
             if username:
-                result = get_ds_sinh_vien_by_id_controller(kythuctap, detai, nguoihuongdan)
-                ds: list = [{'id': i[0], 'mssv': i[1], 'hoten': i[2], 'gioitinh': i[3], 'sdt': i[4], 'email': i[5], 'diachi': i[6], 'malop': i[7], 'id_truong': i[8], 'id_nganh': i[9], 'khoa': i[10], 'luuy': i[12], 'tennganh': i[13], 'tentruong': i[14], 'trangthai': i[15], 'id_nhd': i[16], 'id_ktt': i[17], 'id_dtai': i[18]} for i in result]
+                result = get_ds_user_by_id_controller(kythuctap, detai, nguoihuongdan)
+                ds: list = [{'idus': i[0], 'idpb': i[1], 'hoten': i[2],'ngaysinh':i[3],'diachi':i[4],'sodienthoai':i[5],'email':i[6], 'gioitinh': 'Nam' if i[7]==1 else 'Nữ','chucvu': i[8], 'trangthai': i[9]} for i in result]
                 return JSONResponse(status_code=200, content=ds)
         except jwt.PyJWTError:
             pass
     return RedirectResponse('/login')
 
-@app.get('/get_user_info_by_username')
+"""@app.get('/get_user_info_by_username')
 async def get_user_info_by_username_route(id: str, token: str = Cookie(None)):
     if token:
         try:
@@ -388,28 +399,28 @@ async def get_user_info_by_username_route(id: str, token: str = Cookie(None)):
                     return JSONResponse(status_code=400, content={'status': 'User not found'})
         except jwt.PyJWTError:
             pass
-    return RedirectResponse('/login')
+    return RedirectResponse('/login')"""
 
-@app.get('/get_all_de_tai')
-async def get_all_de_tai(token: str = Cookie(None)):
+@app.get('/get_all_phanquyen')
+async def get_all_phanquyen(token: str = Cookie(None)):
     if token:
         try:
             payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
             username = payload.get("sub")
             if username:
-                return JSONResponse(status_code=200, content=get_all_de_tai_thuc_tap_controller())
+                return JSONResponse(status_code=200, content=get_all_phanquyen_controller())
         except jwt.PyJWTError:
             pass
     return RedirectResponse('/login')
 
-@app.get('/get_all_truong')
-async def get_all_truong(token: str = Cookie(None)):
+@app.get('/get_all_vaitro')
+async def get_all_vaitro(token: str = Cookie(None)):
     if token:
         try:
             payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
             username = payload.get("sub")
             if username:
-                return JSONResponse(status_code=200, content=get_all_truong_controller())
+                return JSONResponse(status_code=200, content=get_all_vaitro_controller())
         except jwt.PyJWTError:
             pass
     return RedirectResponse('/login')
@@ -426,38 +437,26 @@ async def get_all_nganh(token: str = Cookie(None)):
             pass
     return RedirectResponse('/login')
 
-@app.get('/get_all_nganh_by_id_truong')
-async def get_all_nganh_by_id_truong_route(id:str, token: str = Cookie(None)):
+@app.get('/get_all_phanquyen_by_idus')
+async def get_all_phanquyen_by_idus_route(id:str, token: str = Cookie(None)):
     if token:
         try:
             payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
             username = payload.get("sub")
             if username:
-                return JSONResponse(status_code=200, content=get_all_nganh_by_id_truong_controller(id))
+                return JSONResponse(status_code=200, content=get_all_phanquyen_by_idus_controller(id))
         except jwt.PyJWTError:
             pass
     return RedirectResponse('/login')
 
-@app.get('/get_all_nguoi_huong_dan')
-async def get_all_nguoi_huong_dan(token: str = Cookie(None)):
+@app.get('/get_all_vaitro_by_idvt')
+async def get_all_vaitro_by_idvt_route(id:str, token: str = Cookie(None)):
     if token:
         try:
             payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
             username = payload.get("sub")
             if username:
-                return JSONResponse(status_code=200, content=get_all_nguoi_huong_dan_controller())
-        except jwt.PyJWTError:
-            pass
-    return RedirectResponse('/login')
-
-@app.get('/get_chi_tiet_de_tai_by_id')
-async def get_chi_tiet_de_tai_by_id_route(id: str, token: str = Cookie(None)):
-    if token:
-        try:
-            payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
-            username = payload.get("sub")
-            if username:
-                return JSONResponse(status_code=200, content=get_chi_tiet_de_tai_by_id_controller(id))
+                return JSONResponse(status_code=200, content=get_all_vaitro_by_idvt_controller(id))
         except jwt.PyJWTError:
             pass
     return RedirectResponse('/login')

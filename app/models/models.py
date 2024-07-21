@@ -24,16 +24,7 @@ def insert_vai_tro(idvt: str, tenvt: str, trangthai: bool, ghichu: str, ) -> boo
     except Exception as e:
         print(e)
         return False
-def insert_phan_quyen(idus: str, idvt: str, trangthai: bool, ghichu: str, ) -> bool:
-    try:
-        i = cursor.execute("EXEC InsertUser ?, ?, ?, ?",idus, idvt, trangthai, ghichu).fetchone()
-        result = i[0]
-        conn.commit()
-        return result
-    except Exception as e:
-        print(e)
-        return False    
-def insert_taikhoan(idtk:str, taikhoan: str, matkhau: str, ngaytao: datetime, ngaycapnhat: datetime, ) -> bool:
+def insert_tai_khoan(idtk:str, taikhoan: str, matkhau: str, ngaytao: datetime, ngaycapnhat: datetime, ) -> bool:
     try:
         i = cursor.execute("EXEC InsertUser ?, ?, ?, ?", idvt, tenvt, trangthai, ghichu).fetchone()
         result = i[0]
@@ -91,20 +82,20 @@ def capnhat_vai_tro(idvt: str, tenvt: str, trangthai: bool, ghichu:str):
         return True
     except Exception as e:
         return e
-def capnhat_password(request: UpdatePasswordRequest):
+def doi_mk(request: UpdatePasswordRequest):
     try:
         result = cursor.execute("EXEC UpdateMatKhau ?, ?",  request.taikhoan, request.new_password)
         conn.commit()
         return True
     except Exception as e:
         return e
-def update_xoa_phan_quyen_by_idus(idus: str):
+"""def update_xoa_phan_quyen_by_idus(idus: str):
     try:
         result = cursor.execute("EXEC UpdateXoaPhanQuyenByIDUS ?", id)
         conn.commit()
         return True
     except Exception as e:
-        return e
+        return e"""
 def update_xoa_tai_khoan_by_idtk(idtk: str):
     try:
         result = cursor.execute("EXEC UpdateXoaTaiKhoanByIDTK ?", id)

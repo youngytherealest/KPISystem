@@ -7,6 +7,14 @@ def insert_users(idus: int, idpb: int, idtk: int,hoten: str, ngaysinh: datetime,
     result = insert_users(idus, idpb, idtk, hoten, ngaysinh, diachi, sodienthoai, email, gioitinh, chucvu)
     return result
 
+def insert_update_phan_quyen(idus: str, idvt: str, role: bool, trangthai: bool ) -> bool:
+    result = insert_update_phan_quyen(idus, idvt, role, trangthai)
+    return result   
+
+def insert_cong_ty(idct: int, tencongty: str, diachi: str, masothue: str, dienthoai: str, fax: str, email: str) -> bool:
+    result = insert_cong_ty(idct, tencongty, diachi, masothue, dienthoai, fax, email)
+    return result
+ 
 def insert_vai_tro(idvt: int, tenvaitro: str) -> bool:
     result = insert_vai_tro(idvt, tenvaitro)
     return result
@@ -33,6 +41,15 @@ def get_all_phan_quyen_controller():
 def get_all_vai_tro_controller():
     return get_all_vai_tro()
 
+def get_all_cong_ty_controller():
+    return get_all_cong_ty()
+
+def get_all_cong_ty_by_tai_khoan_controller(taikhoan: str):
+    return get_all_cong_ty_by_tai_khoan(taikhoan)
+
+def get_all_cong_ty_by_date_controller(date: str):
+    return get_all_cong_ty_by_date(date)
+
 def get_all_tai_khoan_controller():
     return get_all_tai_khoan()
 
@@ -45,8 +62,8 @@ def get_all_danh_muc_tai_khoan_by_tai_khoan_controller(taikhoan: str):
 def get_all_users_by_ho_ten_controller(hoten: str):
     return get_all_users_by_ho_ten(hoten)
 
-def update_phan_quyen_by_idus_controller(idus: int, idvt: int, trangthai: bool, ghichu: str):
-    return update_phan_quyen_by_id(idus, idvt, trangthai, ghichu)
+def capnhat_congty_by_idct_controller(idct: int, tencongty: str, diachi: str, masothue: str, dienthoai: str, fax: str, email: str):
+    return capnhat_congty_by_idct(idct, tencongty, diachi, masothue, dienthoai, fax, email)
 
 def update_vai_tro_by_idvt_controller(idvt: int, tenvaitro: str):
     return update_vai_tro_by_id(idvt, tenvaitro)
@@ -83,6 +100,9 @@ def update_xoa_tai_khoan_by_idtk_controller(idtk: int):
 
 def update_xoa_vai_tro_by_idvt_controller(idvt: int):
     return xoa_vai_tro_by_idvt(idvt)
+
+def update_xoa_congty_by_idct_controller(idct: str):
+    return xoa_congty_by_idct(idct)
 
 def create_account_controller(request: CreateAccountRequest):
     return create_account(request)

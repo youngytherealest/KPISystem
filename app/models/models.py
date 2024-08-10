@@ -35,6 +35,27 @@ def insert_quan_huyen(idquan: str, tenqh: str, idtinh: str ) -> bool:
         print(e)
         return False
     
+    
+def insert_update_phan_quyen(idus: str, idvt: str, role: bool, trangthai: bool ) -> bool:
+    try:
+        i = cursor.execute("EXEC InsertUser ?, ?, ?, ?", idus, idvt, role, trangthai).fetchone()
+        result = i[0]
+        conn.commit()
+        return result
+    except Exception as e:
+        print(e)
+        return False
+    
+def insert_cong_ty(idct: int, tencongty: str, diachi: str, masothue: str, dienthoai: str, fax: str, email: str) -> bool:
+    try:
+        i = cursor.execute("EXEC Insercongty ?, ?, ?, ?, ?, ?, ?", idct, tencongty, diachi, masothue,dienthoai, fax, email).fetchone()
+        result = i[0]
+        conn.commit()
+        return result
+    except Exception as e:
+        print(e)
+        return False
+
 def insert_tinh_tp(idtinh: str, ten: str) -> bool:
     try:
         i = cursor.execute("EXEC InsertUser ?, ?", idtinh, ten).fetchone()
@@ -116,14 +137,46 @@ def get_all_tai_khoan():
         return result
     except Exception as e:
         return e
-def capnhat_phan_quyen_by_idus(idus: str, idvt: str, trangthai: bool, ghichu:str):
+
+def get_all_cong_ty():
     try:
-        result = cursor.execute("EXEC Insertphanquyen ?, ?, ?", idus, idvt, trangthai,ghichu)
+        result = cursor.execute("EXEC GetCTYDashboard").fetchall()
+        return result
+    except Exception as e:
+        return e
+
+def get_all_cong_ty_by_tai_khoan(taikhoan: str):
+    try:
+        result = cursor.execute("EXEC GetallcontyByTaiKhoan ?", id).fetchall()
+        data = [{'idct': i[0], 'tencongty': i[1], 'diachi': i[2], 'masothue': i[3], 'dienthoai': i[4], 'fax': i[5], 'email': i[6]} for i in result]
+        return data
+    except Exception as e:
+        return e
+
+def get_all_cong_ty_by_date(date: str):
+    try:
+        result = cursor.execute("EXEC GetallcontyByTaiKhoan ?", id).fetchall()
+        data = [{'idct': i[0], 'tencongty': i[1], 'diachi': i[2], 'masothue': i[3], 'dienthoai': i[4], 'fax': i[5], 'email': i[6]} for i in result]
+        return data
+    except Exception as e:
+        return e
+    
+def capnhat_phan_quyen_by_idus(idus: str, idvt: str, trangthai: bool, role: bool):
+    try:
+        result = cursor.execute("EXEC Insertphanquyen ?, ?, ?", idus, idvt, trangthai,role)
         conn.commit()
         return True
     except Exception as e:
         return e
     
+def capnhat_congty_by_idct(idct: int, tencongty: str, diachi: str, masothue: str, dienthoai: str, fax: str, email: str):
+    try:
+        result = cursor.execute("EXEC Insertconty ?, ?, ?, ?, ?, ?, ?", idct, tencongty, diachi, masothue, dienthoai, fax, email)
+        conn.commit()
+        return True
+    except Exception as e:
+        return e
+
 def capnhat_quan_huyen_by_idquan(idquan: str, tenqh: str, idtinh: str):
     try:
         result = cursor.execute("EXEC Insertquanhuyen ?, ?, ?", idquan, tenqh, idtinh)
@@ -181,6 +234,14 @@ def update_xoa_tai_khoan_by_idtk(idtk: str):
 def update_xoa_users_by_idus(idus: str):
     try:
         result = cursor.execute("EXEC UpdateXoausersbyidus ?", idus)
+        conn.commit()
+        return True
+    except Exception as e:
+        return e
+    
+def update_xoa_congty_by_idct(idct: str):
+    try:
+        result = cursor.execute("EXEC UpdateXoacongty_byidct ?", idct)
         conn.commit()
         return True
     except Exception as e:

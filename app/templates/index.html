@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   {% include 'header.html' ignore missing %}
-  <title>Dashboard | HTQL SVTT</title>
+  <title>Dashboard | HTQL NV</title>
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
@@ -38,12 +38,12 @@
             <!-- small box -->
             <div class="small-box bg-info">
               <div class="inner">
-                <h3>{{ dashboard_tongsinhvien }}</h3>
+                <h3>{{ dashboard_tongnhanvien }}</h3>
 
-                <p>Sinh viên</p>
+                <p>Nhân viên</p>
               </div>
               <div class="icon">
-                <i class="fa-solid fa-user-graduate"></i>
+                <i class="fa-solid fa-users"></i>
               </div>
             </div>
           </div>
@@ -52,12 +52,12 @@
             <!-- small box -->
             <div class="small-box bg-warning">
               <div class="inner">
-                <h3>{{dashboard_tiledadanhgia}}</h3>
+                <h3>{{dashboard_nhanvienchuacong}}</h3>
 
-                <p>SV sắp tới hạn báo cáo</p>
+                <p>Nhân viên chưa chấm công</p>
               </div>
               <div class="icon">
-                <i class="fa-solid fa-chart-simple"></i>
+                <i class="fa-solid fa-clock"></i>
               </div>
             </div>
           </div>
@@ -66,12 +66,12 @@
             <!-- small box -->
             <div class="small-box bg-success">
               <div class="inner">
-                <h3>{{dashboard_soluongdat}}</h3>
+                <h3>{{dashboard_nhanvienchamcong}}</h3>
 
-                <p>Đạt</p>
+                <p>Đã chấm công</p>
               </div>
               <div class="icon">
-                <i class="fa-solid fa-user-check"></i>
+                <i class="fa-solid fa-check"></i>
               </div>
             </div>
           </div>
@@ -80,12 +80,12 @@
             <!-- small box -->
             <div class="small-box bg-danger">
               <div class="inner">
-                <h3>{{dashboard_soluongkhongdat}}</h3>
+                <h3>{{dashboard_nhanviennghi}}</h3>
 
-                <p>Không đạt</p>
+                <p>Nghỉ</p>
               </div>
               <div class="icon">
-                <i class="fa-solid fa-user-xmark"></i>
+                <i class="fa-solid fa-times"></i>
               </div>
             </div>
           </div>
@@ -101,15 +101,15 @@
               <div class="card-header">
                 <h3 class="card-title">
                   <i class="fa-solid fa-chart-column"></i>
-                  Số sinh viên theo trường
+                  Số nhân viên theo phòng ban
                 </h3>
 
               </div><!-- /.card-header -->
               <div class="card-body">
                 <div class="tab-content p-0">
                   <!-- Morris chart - Sales -->
-                  <div class="chart tab-pane active" id="college-chart">
-                      <canvas id="college-chart-canvas" style="height: 250px; width: 100%;"></canvas>
+                  <div class="chart tab-pane active" id="department-chart">
+                      <canvas id="department-chart-canvas" style="height: 250px; width: 100%;"></canvas>
                    </div>
                 </div>
               </div><!-- /.card-body -->
@@ -124,11 +124,11 @@
               <div class="card-header border-0">
                 <h3 class="card-title">
                   <i class="fa-solid fa-chart-pie"></i>
-                  Số sinh viên theo ngành
+                  Số nhân viên theo trạng thái
                 </h3>
               </div>
               <div class="card-body">
-                <canvas id="world_map" style="height: 250px; width: 100%;"></canvas>
+                <canvas id="status_chart" style="height: 250px; width: 100%;"></canvas>
               </div>
             </div>
             <!-- /.card -->
@@ -141,18 +141,18 @@
               <div class="card-header border-0">
                 <h3 class="card-title">
                   <i class="fa-solid fa-list-ol"></i>
-                  Danh sách sinh viên
+                  Danh sách nhân viên
                 </h3>
               </div>
               <div class="card-body">
-                <table class="table table-bordered table-hover" id="dashboard_bangdssv">
+                <table class="table table-bordered table-hover" id="dashboard_bangdsnv">
                   <thead>
                     <tr>
-                      <th scope="col" style="text-align: center;">MSSV</th>
+                      <th scope="col" style="text-align: center;">Mã NV</th>
                       <th scope="col" style="text-align: center;">Họ tên</th>
                       <th scope="col" style="text-align: center;">Giới tính</th>
-                      <th scope="col" style="text-align: center;">Chuyên ngành</th>
-                      <th scope="col" style="text-align: center;">Trường</th>
+                      <th scope="col" style="text-align: center;">Phòng ban</th>
+                      <th scope="col" style="text-align: center;">Chức vụ</th>
                       <th scope="col" style="text-align: center;">Trạng thái</th>
                       <th scope="col" style="text-align: center;"></th>
                     </tr>

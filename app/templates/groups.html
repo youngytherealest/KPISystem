@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   {% include 'header.html' ignore missing %}
-  <title>Nhóm thực tập | HTQL SVTT</title>
+  <title>Nhóm nhân viên | HTQL NV</title>
 </head>
 <body class="hold-transition sidebar-mini">
 <!-- Site wrapper -->
@@ -17,12 +17,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Nhóm thực tập</h1>
+            <h1>Nhóm nhân viên</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Nhóm thực tập</li>
+              <li class="breadcrumb-item active">Nhóm nhân viên</li>
             </ol>
           </div>
         </div>
@@ -36,18 +36,18 @@
         <div class="card-header border-0 rows">
           <h3 class="card-title col-lg-3">
             <i class="fa-solid fa-list-ol"></i>
-            Danh sách nhóm thực tập  
+            Danh sách nhóm nhân viên  
           </h3>
-          <button class="btn btn-success btn-s ms-auto" id="themkythuctap_btn" style="float: right;"><i class="fa-solid fa-plus"></i> Thêm nhóm thực tập</button>
+          <button class="btn btn-success btn-s ms-auto" id="themnhomnhanvien_btn" style="float: right;"><i class="fa-solid fa-plus"></i> Thêm nhóm nhân viên</button>
         </div>
         <div class="card-body">
-          <table class="table table-bordered table-hover" id="bangdsnhomthuctap">
+          <table class="table table-bordered table-hover" id="bangdsnhomnhanvien">
             <thead>
               <tr>
                 <th scope="col" style="text-align: center;">STT</th>
                 <th scope="col" style="text-align: center; width: 15%;">Ngày bắt đầu</th>
-                <th scope="col" style="text-align: center;">Tên đề tài</th>
-                <th scope="col" style="text-align: center; width: 20%;">Người hướng dẫn</th>
+                <th scope="col" style="text-align: center;">Tên nhóm</th>
+                <th scope="col" style="text-align: center; width: 20%;">Trưởng nhóm</th>
                 <th scope="col" style="text-align: center;">Trạng thái</th>
                 <th scope="col" style="text-align: center; width: 12%;">Thao tác</th>
               </tr>

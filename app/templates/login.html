@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Đăng nhập | HTQL SVTT</title>
+  <title>Đăng nhập | HTQL NV</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -19,22 +19,22 @@
   <!-- /.login-logo -->
   <div class="card card-outline card-primary">
     <div class="card-header text-center">
-      <h1>HTQL STT</h1>
+      <h1>Hệ Thống Quản Lý Nhân Viên</h1>
     </div>
     <div class="card-body">
-      <p class="login-box-msg">Đăng nhập</p>
+      <p class="login-box-msg">Đăng nhập để tiếp tục</p>
 
       <form action="/token" method="post">
         <div class="input-group mb-3">
-          <input type="username" id="username" class="form-control" placeholder="Tài khoản">
+          <input type="username" id="username" name="username" class="form-control" placeholder="Tài khoản">
           <div class="input-group-append">
             <div class="input-group-text">
-              <span class="fas fa-envelope"></span>
+              <span class="fas fa-user"></span>
             </div>
           </div>
         </div>
         <div class="input-group mb-3">
-          <input type="password" id="password" class="form-control" placeholder="Mật khẩu">
+          <input type="password" id="password" name="password" class="form-control" placeholder="Mật khẩu">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-lock"></span>
@@ -44,7 +44,7 @@
         <div class="row">
           <!-- /.col -->
           <div class="col-12">
-            <button type="button" id="loginBtn" class="btn btn-primary btn-block">Đăng nhập</button>
+            <button type="submit" id="loginBtn" class="btn btn-primary btn-block">Đăng nhập</button>
           </div>
           <!-- /.col -->
         </div>

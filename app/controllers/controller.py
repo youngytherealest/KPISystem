@@ -1,7 +1,13 @@
+
 def insert_users(idus: int, idpb: int, idtk: int,hoten: str, ngaysinh: datetime, diachi: str, sodienthoai: constr(regex=r'^\d{10,15}$'), email: str, gioitinh: bool, chucvu: str) -> bool:
     result = insert_users(idus, idpb, idtk, hoten, ngaysinh, diachi, sodienthoai, email, gioitinh, chucvu)
     return result
+ 
 
+def insert_cong_ty(idct: int, tencongty: str, diachi: str, masothue: str, dienthoai: str, fax: str, email: str) -> bool:
+    result = insert_cong_ty(idct, tencongty, diachi, masothue, dienthoai, fax, email)
+    return result
+  
 def insert_vai_tro(idvt: int, tenvaitro: str) -> bool:
     result = insert_vai_tro(idvt, tenvaitro)
     return result

@@ -236,3 +236,44 @@ def doi_mk(request: UpdatePasswordRequest) -> bool:
     except Exception as e:
         print(e)
         return False
+class CreateAccountRequest:
+    def __init__(self, taikhoan: str, matkhau: str, trangthai: str):
+        self.taikhoan = taikhoan
+        self.matkhau = matkhau
+        self.trangthai = trangthai
+def create_account(request: CreateAccountRequest):
+    try:
+        result = cursor.execute("EXEC INSERTtk ?, ?, ?", request.taikhoan, request.matkhau, request.trangthai)
+        r = result.fetchone()[0]
+        conn.commit()  # Use conn.commit() instead of cursor.commit()
+        return r
+    except Exception as e:
+        print(e)  # Print the exception for debugging purposes
+        return None  # Return None or an appropriate value in case of an exception
+class LogoutRequest:
+    def __init__(self, taikhoan: str):
+        self.taikhoan = taikhoan
+def logout(request: LogoutRequest):
+    try: 
+        result = cursor.execute("EXEC SPLOGOUT ?", request.taikhoan)
+        r = result.fetchone()[0]
+        conn.commit()  # Use conn.commit() instead of cursor.commit()
+        return r
+    except Exception as e:
+        print(e)  # Print the exception for debugging purposes
+        return None  # Return None or an appropriate value in case of an exception
+class LoginRequest:
+    def __init__(self, taikhoan: str, matkhau: str):
+        self.taikhoan = taikhoan
+        self.matkhau = matkhau
+
+
+def login(request: LoginRequest):
+    try: 
+        result = cursor.execute("EXEC SPLOGIN ?, ?", request.taikhoan, request.matkhau)
+        r = result.fetchone()[0]
+        conn.commit()  # Use conn.commit() instead of cursor.commit()
+        return r
+    except Exception as e:
+        print(e)  # Print the exception for debugging purposes
+        return None  # Return None or an appropriate value in case of an exception

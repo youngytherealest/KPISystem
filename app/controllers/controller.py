@@ -1,3 +1,7 @@
+from ..models.models import *
+from ..utils.export_report import *
+
+import datetime
 
 def insert_users(idus: int, idpb: int, idtk: int,hoten: str, ngaysinh: datetime, diachi: str, sodienthoai: constr(regex=r'^\d{10,15}$'), email: str, gioitinh: bool, chucvu: str) -> bool:
     result = insert_users(idus, idpb, idtk, hoten, ngaysinh, diachi, sodienthoai, email, gioitinh, chucvu)

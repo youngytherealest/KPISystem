@@ -30,8 +30,8 @@ templates = Jinja2Templates(directory=os.path.join(os.getcwd(),"app","templates"
 
 
 class UserCredentials(BaseModel):
-    username: str
-    password: str
+    taikhoan: str
+    matkhau: str
 
 class Token(BaseModel):
     access_token: str
@@ -71,19 +71,19 @@ ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 60*6
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 
-def verify_user_route(credentials: UserCredentials):
-    return verify_user_controller(username=credentials.username, password=Us_123(bytes(credentials.password, 'utf-8')).hexdigest())
+def verify_users_route(credentials: UserCredentials):
+    return verify_user_controller(taikhoan=credentials.taikhoan, matkhau=Us_123(bytes(credentials.matkhau, 'utf-8')).hexdigest())
 
-def get_current_user(token: str = Depends(oauth2_scheme)):
+def get_current_users(token: str = Depends(oauth2_scheme)):
     credentials_exception = HTTPException(status_code=401, detail="Could not validate credentials")
     try:
         payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
-        username: str = payload.get("sub")
-        if username is None:
+        taikhoan: str = payload.get("sub")
+        if taikhoan is None:
             raise credentials_exception
     except jwt.PyJWTError:
         raise credentials_exception
-    return username
+    return taikhoan
 
 # Middleware để bắt lỗi 404 và xử lý
 @app.middleware("http")
@@ -97,12 +97,12 @@ async def catch_404(request, call_next):
 async def login_for_access_token(credentials: UserCredentials):
     if verify_user_route(credentials):
         access_token_expires = datetime.timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
-        access_token = create_access_token(data={"sub": credentials.username}, expires_delta=access_token_expires)
+        access_token = create_access_token(data={"sub": credentials.taikhoan}, expires_delta=access_token_expires)
         response = JSONResponse({"access_token": access_token, "token_type": "bearer"})
         response.set_cookie("token", access_token, httponly=False)
-        response.set_cookie("username", credentials.username, httponly=False)
+        response.set_cookie("taikhoan", credentials.taikhoan, httponly=False)
         return response
-    raise HTTPException(status_code=400, detail="Incorrect username or password")
+    raise HTTPException(status_code=400, detail="Incorrect taikhoan or matkhau")
 
 def create_access_token(data: dict, expires_delta: datetime.timedelta):
     to_encode = data.copy()
@@ -122,9 +122,9 @@ async def home(request: Request, token: str = Cookie(None)):
     if token:
         try:
             payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
-            username = payload.get("sub")
-            if username:
-                tong_sinh_vien: int = count_all_user_controller()
+            taikhoan = payload.get("sub")
+            if taikhoan:
+                tong_users: int = count_all_users_controller()
                 return templates.TemplateResponse('index.html', context={'request': request, 'dashboard_tonguser': tong_user, 'dashboard_tiledadanhgia': ti_le_da_danh_gia, 'dashboard_soluongdat': so_luong_ket_qua['dat'], 'dashboard_soluongkhongdat': so_luong_ket_qua['khong_dat']})
         except jwt.PyJWTError:
             pass
@@ -135,8 +135,8 @@ async def login(request: Request, token: str = Cookie(None)):
     if token:
         try:
             payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
-            username = payload.get("sub")
-            if username:
+            taikhoan = payload.get("sub")
+            if taikhoan:
                 return RedirectResponse(url='/')
         except jwt.PyJWTError:
             pass
@@ -290,6 +290,34 @@ async def get_all_users_route(token: str = Cookie(None)):
             if username:
                 result = get_all_users_controller()
                 ds: list = [{'idus': i[0], 'idpb': i[1], 'hoten': i[2], 'ngaysinh': i[3], 'diachi': i[4], 'sodienthoai': i[5], 'emai': i[6], 'gioitinh': i[7], 'chucvu': i[8], 'trangthai': i[9]} for i in result]
+                return JSONResponse(status_code=200, content=ds)
+        except jwt.PyJWTError:
+            pass
+    return RedirectResponse('/login')
+
+@app.get('/get_all_list_users')
+async def get_all_list_users_route(token: str = Cookie(None)):
+    if token:
+        try:
+            payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
+            username = payload.get("sub")
+            if username:
+                result = get_all_list_users_controller()
+                ds: list = [{'idus': i[0], 'idpb': i[1], 'hoten': i[2], 'ngaysinh': i[3], 'diachi': i[4], 'sodienthoai': i[5], 'emai': i[6], 'gioitinh': i[7], 'chucvu': i[8], 'trangthai': i[9]} for i in result]
+                return JSONResponse(status_code=200, content=ds)
+        except jwt.PyJWTError:
+            pass
+    return RedirectResponse('/login')
+
+@app.get('/get_ds_users_by_idus')
+async def get_ds_users_by_idus_route(kythuctap: str, detai: str, nguoihuongdan: str,token: str = Cookie(None)):
+    if token:
+        try:
+            payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
+            username = payload.get("sub")
+            if username:
+                result = get_ds_users_by_id_controller(kythuctap, detai, nguoihuongdan)
+                ds: list = [{'id': i[0], 'mssv': i[1], 'hoten': i[2], 'gioitinh': i[3], 'sdt': i[4], 'email': i[5], 'diachi': i[6], 'malop': i[7], 'id_truong': i[8], 'id_nganh': i[9], 'khoa': i[10], 'luuy': i[12], 'tennganh': i[13], 'tentruong': i[14], 'trangthai': i[15], 'id_nhd': i[16], 'id_ktt': i[17], 'id_dtai': i[18]} for i in result]
                 return JSONResponse(status_code=200, content=ds)
         except jwt.PyJWTError:
             pass

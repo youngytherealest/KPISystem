@@ -35,6 +35,12 @@ def insert_xa_phuong(idxa: str, tenxp: str, idquan: str) -> bool:
     result = insert_xa_phuong(idxa, tenxp, idquan)
     return result
 
+def verify_user_controller(taikhoan: str, matkhau: str):
+    return verify_user(taikhoan, matkhau)
+
+def count_all_users_controller():
+    return count_all_users()
+
 def get_all_phan_quyen_controller():
     return get_all_phan_quyen()
 

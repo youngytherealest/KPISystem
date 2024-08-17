@@ -15,6 +15,18 @@ def insert_user(idus: str, idpb: str,idtk:str, hoten: str, ngaysinh: datetime, d
     except Exception as e:
         print(e)
         return False
+    
+def verify_users(taikhoan: str, matkhau: str):
+    try:
+        cursor.execute("LoginUsers ?, ?", taikhoan, matkhau)
+        result = cursor.fetchone()
+
+        if not result or not result.IsValidUser:
+            return False
+        return True
+    except Exception as e:
+        return e
+
 def insert_vai_tro(idvt: str, tenvt: str, trangthai: bool, ghichu: str, ) -> bool:
     try:
         i = cursor.execute("EXEC InsertUser ?, ?, ?, ?", idvt, tenvt, trangthai, ghichu).fetchone()
@@ -95,6 +107,13 @@ def verify_tai_khoan(taikhoan: str, matkhau: str):
         return True
     except Exception as e:
         return e
+    
+def count_all_users():
+    try:
+        result = cursor.execute("SELECT COUNT(*) FROM users")
+        return result.fetchone()[0]
+    except Exception as e:
+        return e    
 
 def get_all_users_by_ho_ten(hoten: str):
     try:
